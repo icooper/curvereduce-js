@@ -44,6 +44,8 @@ jobs:
           echo version = $(jq ".version" package.json)
 
       - name: Publish package
-        run: npm publish
+        run: |
+          echo '//registry.npmjs.org/:_authToken=${NPM_TOKEN}' > .npmrc
+          npm publish
         env:
           NPM_TOKEN: ${{ secrets.NPM_ACCESS_TOKEN }}
