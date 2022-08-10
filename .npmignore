@@ -1,0 +1,8 @@
+.github
+.yarn/*
+!.yarn/releases
+!dist
+.editorconfig
+.pnp*
+.pre-commit*
+coverage
