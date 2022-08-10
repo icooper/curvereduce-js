@@ -1,0 +1,49 @@
+name: NPM
+on:
+  push:
+    tags:
+      - "v*"
+
+jobs:
+  build-and-publish:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v2
+
+      - name: Setup Node 16
+        uses: actions/setup-node@v3.4.1
+        with:
+          node-version: 16
+
+      - name: Install tooling
+        run: yarn install --immutable
+
+      - name: Compile
+        run: yarn build
+
+      - name: Test with jest
+        run: yarn test
+
+      - name: Upload coverage (Codecov)
+        uses: codecov/codecov-action@v3
+        with:
+          files: coverage/clover.xml
+
+      - name: Upload coverage (Codacy)
+        uses: codacy/codacy-coverage-reporter-action@v1.3.0
+        with:
+          project-token: ${{ secrets.CODACY_PROJECT_TOKEN }}
+          coverage-reports: coverage/clover.xml
+
+      - name: Update package version
+        run: |
+          cp package.json package.json.original
+          jq ".version = \"${GITHUB_REF#refs/tags/v}\"" package.json.original > package.json
+          rm package.json.original
+          echo version = $(jq ".version" package.json)
+
+      - name: Publish package
+        run: npm publish
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_ACCESS_TOKEN }}
