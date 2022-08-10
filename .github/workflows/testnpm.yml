@@ -16,7 +16,7 @@ jobs:
           node-version: 16
 
       - name: Install tooling
-        run: yarn install --development --immutable
+        run: yarn install --immutable
 
       - name: Compile
         run: yarn build
