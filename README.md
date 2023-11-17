@@ -3,7 +3,6 @@
 This is an implementation of the [Ramer-Douglas-Peucker (RDP) curve simplification algorithm](https://en.wikipedia.org/wiki/Ramer%E2%80%93Douglas%E2%80%93Peucker_algorithm) in TypeScript.
 
 [![codecov](https://codecov.io/gh/icooper/curvereduce-js/branch/main/graph/badge.svg?token=Jq1uPWWSxd)](https://codecov.io/gh/icooper/curvereduce-js)
-[![Codacy Badge](https://app.codacy.com/project/badge/Grade/dd9f19a00f234fdfb816fc2bb396e2d7)](https://www.codacy.com/gh/icooper/curvereduce-js/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=icooper/curvereduce-js&amp;utm_campaign=Badge_Grade)
 [![npm version](https://badge.fury.io/js/curvereduce.svg)](https://www.npmjs.com/package/curvereduce)
 
 ## Usage
