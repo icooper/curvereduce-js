@@ -29,11 +29,5 @@ jobs:
         with:
           files: coverage/clover.xml
 
-      - name: Upload coverage (Codacy)
-        uses: codacy/codacy-coverage-reporter-action@v1.3.0
-        with:
-          project-token: ${{ secrets.CODACY_PROJECT_TOKEN }}
-          coverage-reports: coverage/clover.xml
-
       - name: Build test package
         run: npm publish --dry-run
